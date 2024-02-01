@@ -36,6 +36,8 @@ services:
             - XMR_HOST=
             - CMS_USE_MEMCACHED=
             - MEMCACHED_HOST=
+            - MYSQL_DATABASE=
+            - MYSQL_USER=
             - MYSQL_PASSWORD=
         #env_file: config.env
         ports:
