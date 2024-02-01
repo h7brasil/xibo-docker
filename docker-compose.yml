@@ -9,17 +9,18 @@ services:
             - MYSQL_DATABASE=cms
             - MYSQL_USER=cms
             - MYSQL_RANDOM_ROOT_PASSWORD=yes
-            
         mem_limit: 1g
         env_file: config.env
         restart: always
+
     cms-xmr:
         image: ghcr.io/xibosignage/xibo-xmr:0.11
         ports:
             - "9505:9505"
-        restart: always
         mem_limit: 256m
         env_file: config.env
+        restart: always
+
     cms-web:
         image: ghcr.io/xibosignage/xibo-cms:release-4.0.6
         volumes:
@@ -30,9 +31,6 @@ services:
             - "./shared/cms/web/userscripts:/var/www/cms/web/userscripts:Z"
             - "./shared/cms/ca-certs:/var/www/cms/ca-certs:Z"
         restart: always
-        links:
-            - cms-db:mysql
-            - cms-xmr:50001
         environment:
             - XMR_HOST=cms-xmr
             - CMS_USE_MEMCACHED=true
@@ -41,11 +39,13 @@ services:
         ports:
             - "8082:80"
         mem_limit: 1g
+
     cms-memcached:
         image: memcached:alpine
         command: memcached -m 15
         restart: always
         mem_limit: 100M
+
     cms-quickchart:
       image: ianw/quickchart
       restart: always
