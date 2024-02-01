@@ -9,7 +9,7 @@ services:
             - MYSQL_DATABASE=cms
             - MYSQL_USER=cms
             - MYSQL_RANDOM_ROOT_PASSWORD=yes
-          #  - MYSQL_PASSWORD=ewrhuifewh223124328
+            - MYSQL_PASSWORD=ewrhuifewh223124328
         mem_limit: 1g
         env_file: config.env
         restart: always
@@ -19,7 +19,7 @@ services:
             - "9505:9505"
         restart: always
         mem_limit: 256m
-        env_file: config.env
+        #env_file: config.env
     cms-web:
         image: ghcr.io/xibosignage/xibo-cms:release-4.0.6
         volumes:
